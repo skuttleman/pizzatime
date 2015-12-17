@@ -1,23 +1,48 @@
-main {
-  font-family: Helvetica, sans-serif;
-  font-size: 3em;
-  display: flex;
-  height: 100vh;
-  width: 100vw;
-  align-items: center;
-  justify-content: center;
-  .clock {
-    max-height: 1em;
+@font-face {
+  font-family: 'Digits';
+  // src: url(./DS-DIGIT.ttf) format("truetype");
+  src: url(./digital-7.ttf) format("truetype");
+}
+
+html {
+  main {
+    font-family: 'Digits', Helvetica, sans-serif;
+    font-size: 3em;
     display: flex;
-    flex-flow: row-nowrap;
-    flex-grow: 0;
-    overflow: hidden;
-    div {
+    height: 100vh;
+    width: 100vw;
+    align-items: center;
+    justify-content: center;
+    .clock {
+      max-height: 1em;
       display: flex;
-      flex-flow: column;
-      margin: 0 2px;
-      span {
-        position: relative;
+      flex-flow: row-nowrap;
+      flex-grow: 0;
+      overflow: hidden;
+      padding: 10px 10px 12px;
+      border: 5px solid black;
+      border-radius: 10px;
+      background-color: #333;
+      box-shadow: 6px -4px 1px 1px black;
+      .colon {
+        color: white;
+      }
+      div {
+        display: flex;
+        flex-flow: column;
+        margin: 0 1px;
+        span {
+          position: relative;
+          padding-top: 5px;
+          &:not(.colon) {
+            text-align: center;
+            width: 55px;
+            border: 1px solid #999;
+            border-radius: 5px;
+            background-color: #666;
+            color: #3e3;
+          }
+        }
       }
     }
   }

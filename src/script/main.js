@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  var factor = 1000, spacing = 55, counter = 0;
+  var factor = 1000, spacing = 50, counter = 0;
   setInterval(animateLetters, factor, spacing, function() { return ++counter; });
 });
 
@@ -17,8 +17,8 @@ function animateLetter(id, spacing) {
 
 function animateLetters(spacing, next) {
   var elapsed = next();
-  [0,1,2,3,4,5,6,7,8].forEach(function(_, i) {
-    id = Math.pow(3, i);
+  [0,1,2,3,4,5,6,7,8].forEach(function(i) {
+    var id = Math.pow(3, i);
     if (elapsed % id === 0) animateLetter(i, spacing);
   });
 }
