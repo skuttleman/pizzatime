@@ -1,0 +1,26 @@
+{
+  "name": "pizzatime",
+  "version": "1.0.0",
+  "description": "pizzatime",
+  "main": "gulpfile.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "",
+  "license": "ISC",
+  "repository": {
+    "type": "git"
+  },
+  "devDependencies": {
+    "del": "*",
+    "gulp": "*",
+    "gulp-concat": "*",
+    "gulp-minify": "*",
+    "gulp-minify-css": "*",
+    "gulp-minify-html": "*",
+    "gulp-sass": "*"
+  }
+}
