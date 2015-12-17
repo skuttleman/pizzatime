@@ -1,6 +1,12 @@
 $(document).ready(function() {
   var factor = 1000, spacing = 50, counter = 0;
-  setInterval(animateLetters, factor, spacing, function() { return ++counter; });
+  var string = window.location.search.slice(1) || 'pizzatime';
+  var length = string.length;
+  string = clockify(string);
+  insert(string, length);
+  var array = [];
+  while (array.length < length) array.push(array.length);
+  setInterval(animateLetters, factor, spacing, function() { return ++counter; }, array);
 });
 
 function animateLetter(id, spacing) {
@@ -15,10 +21,32 @@ function animateLetter(id, spacing) {
   });
 }
 
-function animateLetters(spacing, next) {
+function animateLetters(spacing, next, array) {
   var elapsed = next();
-  [0,1,2,3,4,5,6,7,8].forEach(function(i) {
+  array.forEach(function(i) {
     var id = Math.pow(3, i);
     if (elapsed % id === 0) animateLetter(i, spacing);
+  });
+}
+
+function clockify(string) {
+  var before = string.split('');
+  var after = [];
+  while (before.length) {
+    after.unshift(before.pop());
+    if (before.length) after.unshift(before.pop());
+    if (before.length) after.unshift(':');
+  }
+  return after.join('');
+}
+
+function insert(string, length) {
+  var $clock = $('.clock');
+  string.split('').forEach(function(letter) {
+    if (letter === ':') {
+      $clock.append('<div><span class="colon">:</span></div>');
+    } else {
+      $clock.append('<div><span class="digit num-' + (--length) + '">' + letter + '</span></div>');
+    }
   });
 }
