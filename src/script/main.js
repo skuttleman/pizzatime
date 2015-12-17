@@ -1,17 +1,14 @@
 $(document).ready(function() {
-  var factor = 1000, spacing = 50, counter = 0;
-  var string = window.location.search.slice(1) || 'pizzatime';
-  var length = string.length;
+  var factor = 1000, spacing = 50, counter = 0, array = [],
+    string = location.search.slice(1) || 'pizzatime', length = string.length;
   string = clockify(string);
-  insert(string, length);
-  var array = [];
+  insertDOM(string, length);
   while (array.length < length) array.push(array.length);
   setInterval(animateLetters, factor, spacing, function() { return ++counter; }, array);
 });
 
 function animateLetter(id, spacing) {
-  var $letter = $('.num-' + id);
-  var $sibling = $letter.clone();
+  var $letter = $('.num-' + id), $sibling = $letter.clone();
   $letter.parent().append($sibling);
   $letter.animate({ top: -spacing }, function() {
     $letter.remove();
@@ -30,8 +27,7 @@ function animateLetters(spacing, next, array) {
 }
 
 function clockify(string) {
-  var before = string.split('');
-  var after = [];
+  var before = string.split(''), after = [];
   while (before.length) {
     after.unshift(before.pop());
     if (before.length) after.unshift(before.pop());
@@ -40,7 +36,7 @@ function clockify(string) {
   return after.join('');
 }
 
-function insert(string, length) {
+function insertDOM(string, length) {
   var $clock = $('.clock');
   string.split('').forEach(function(letter) {
     if (letter === ':') {
