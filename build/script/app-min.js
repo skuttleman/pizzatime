@@ -1,5 +1,1 @@
-function add(a, b) {
-  return a + b;
-}
-
-module.exports = { add: add }
+function animateLetter(t,n){var e=$(".num-"+t),a=e.clone();e.parent().append(a),e.animate({top:-n},function(){e.remove()}),a.animate({top:-n},function(){a.css({top:0})})}function animateLetters(t,n){var e=n();[1,2,4,8,16,32,64,128,256].forEach(function(n){e%n===0&&animateLetter(n,t)})}$(document).ready(function(){var t=1e3,n=55,e=0;setInterval(animateLetters,t,n,function(){return++e})});

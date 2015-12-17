@@ -1,0 +1,1 @@
+main{font-family:Helvetica,sans-serif;font-size:3em;display:flex;height:100vh;width:100vw;align-items:center;justify-content:center}main .clock{max-height:1em;display:flex;flex-flow:row-nowrap;flex-grow:0;overflow:hidden}main .clock div{display:flex;flex-flow:column;margin:0 2px}main .clock div span{position:relative}
