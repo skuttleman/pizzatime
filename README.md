@@ -1,3 +1,7 @@
-Serve up the build folder as a static page and run to see what time it is
+# Pizzatime
 
-Put anything you want in the query string to change the time metric.
+What time is it? It's [pizza time](https://pizzatime.firebaseapp.com)!
+
+For extra fun, add a query string:
+
+[https://pizzatime.firebaseapp.com?robotic_uprising](https://pizzatime.firebaseapp.com?robotic_uprising)
