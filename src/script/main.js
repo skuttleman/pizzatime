@@ -4,7 +4,15 @@ $(document).ready(function() {
   string = clockify(string);
   insertDOM(string, length);
   while (array.length < length) array.push(array.length);
-  setInterval(animateLetters, factor, spacing, function() { return ++counter; }, array);
+  var interval = setInterval(animateLetters, factor, spacing, function() { return ++counter; }, array);
+  
+  $(window).blur(function() {
+    clearInterval(interval);
+  });
+
+  $(window).focus(function() {
+    interval = setInterval(animateLetters, factor, spacing, function() { return ++counter; }, array);
+  });
 });
 
 function animateLetter(id, spacing) {
