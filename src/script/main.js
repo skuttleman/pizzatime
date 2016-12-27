@@ -1,17 +1,37 @@
+var interval;
+
+function getString(url) {
+  return new Promise(function(resolve, reject) {
+    $.get(url).done(resolve).fail(reject);
+  });
+}
+
+function onReady(string) {
+  var factor = 1000, spacing = 50, counter = 0, array = [];
+  insertDOM(clockify(string), string.length);
+  while (array.length < string.length) array.push(array.length);
+  clearInterval(interval);
+  interval = setInterval(animateLetters, factor, spacing, function() { return ++counter; }, array);
+}
+
+function setup() {
+  var query = location.search.slice(1);
+  return getString('https://pizzatime-api.herokuapp.com/')
+    .then(function(data) {
+      return query === 'surpriseme' ? data.data : Promise.reject();
+    }).catch(function() {
+      return query || 'pizzatime';
+    }).then(onReady);
+}
+
 $(document).ready(function() {
-  var factor = 1000, spacing = 50, counter = 0, array = [],
-    string = location.search.slice(1) || 'pizzatime', length = string.length;
-  string = clockify(string);
-  insertDOM(string, length);
-  while (array.length < length) array.push(array.length);
-  var interval = setInterval(animateLetters, factor, spacing, function() { return ++counter; }, array);
-  
+  onReady(location.search.slice(1) || 'pizzatime');
+  setup();
   $(window).blur(function() {
     clearInterval(interval);
   });
-
   $(window).focus(function() {
-    interval = setInterval(animateLetters, factor, spacing, function() { return ++counter; }, array);
+    setup();
   });
 });
 
@@ -46,6 +66,7 @@ function clockify(string) {
 
 function insertDOM(string, length) {
   var $clock = $('.clock');
+  $clock.empty();
   string.split('').forEach(function(letter) {
     if (letter === ':') {
       $clock.append('<div><span class="colon">:</span></div>');
