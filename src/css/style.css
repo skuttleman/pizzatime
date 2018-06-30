@@ -2,42 +2,41 @@
   font-family: 'Digits';
   src: url(./digital-7.ttf) format("truetype"); }
 
-html {
+body {
   display: flex; }
-  html main {
+  body main {
     font-family: 'Digits', Helvetica, sans-serif;
     font-size: 3em;
     display: flex;
-    height: 100vh;
-    min-width: 100vw;
+    height: calc(100vh - 40px);
+    width: 100vw;
     flex-grow: 1;
     align-items: center;
     justify-content: center;
     padding: 0 20px; }
-    html main .clock {
+    body main .clock {
       max-height: 1em;
       display: flex;
-      flex-flow: row-nowrap;
       flex-grow: 0;
       overflow: hidden;
       padding: 10px 10px 12px;
       border: 5px solid black;
       border-radius: 10px;
-      background-color: #333;
-      box-shadow: 6px -4px 1px 1px black; }
-      html main .clock .colon {
-        color: white; }
-      html main .clock div {
+      background-color: #303f30;
+      box-shadow: 6px -4px 1px 1px #795c41; }
+      body main .clock .colon {
+        color: #3c3; }
+      body main .clock div {
         display: flex;
         flex-flow: column;
         margin: 0 1px; }
-        html main .clock div span {
+        body main .clock div span {
           position: relative;
           padding-top: 5px; }
-          html main .clock div span:not(.colon) {
+          body main .clock div span:not(.colon) {
             text-align: center;
             width: 55px;
             border: 1px solid #999;
             border-radius: 5px;
             background-color: #666;
-            color: #3e3; }
+            color: #eff; }

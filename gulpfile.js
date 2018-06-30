@@ -9,21 +9,21 @@ var gulp = require('gulp'),
 gulp.task('default', ['watch']);
 
 // HTML Minify to ./build/
-gulp.task('htmlProcess', function() {
+gulp.task('htmlProcess', function () {
   return gulp.src('./src/**/*.html')
     .pipe(htmlMinify().on('error', console.log))
     .pipe(gulp.dest('./build/'));
 });
 
 // SCSS Transpile to ./src/css
-gulp.task('scssProcess', function() {
+gulp.task('scssProcess', function () {
   return gulp.src('./src/scss/**/*.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest('./src/css/'));
 });
 
 // CSS concat & minify to ./build/style
-gulp.task('cssProcess', function() {
+gulp.task('cssProcess', function () {
   return gulp.src('./src/css/**/*.css')
     .pipe(concat('app.css').on('error', console.log))
     .pipe(cssMinify().on('error', console.log))
@@ -31,19 +31,23 @@ gulp.task('cssProcess', function() {
 });
 
 // Javascript concat & minify to ./src/script
-gulp.task('jsProcess', function() {
+gulp.task('jsProcess', function () {
   return gulp.src('./src/script/**/*.js')
     .pipe(concat('app.js').on('error', console.log))
     .pipe(jsMinify().on('error', console.log))
     .pipe(gulp.dest('./build/script'));
 });
-gulp.task('jsClean', function() {
+gulp.task('jsClean', function () {
   del(['./build/script/app.js']);
 });
 
 
+gulp.task('build', ['htmlProcess', 'scssProcess', 'cssProcess', 'jsProcess'], function () {
+  return gulp.start(['jsClean']);
+});
+
 // Watchem
-gulp.task('watch', function() {
+gulp.task('watch', function () {
   gulp.watch('./src/**/*.html', ['htmlProcess']);
   gulp.watch('./src/scss/**/*.scss', ['scssProcess']);
   gulp.watch('./src/css/**/*.css', ['cssProcess']);
